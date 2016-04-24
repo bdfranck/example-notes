@@ -15,7 +15,7 @@
       != partial("attachments", {"source": "$data"})
     
     .note-footer
-      a.note-cancel(href='#' data-bind="visible: $data.isEditing, click: $root.editNote") Cancel
+      //a.note-cancel(href='#' data-bind="visible: $data.isEditing, click: $root.editNote") Cancel
       span.note-meta(data-bind="css: { 'hidden' : $data.isEditing }")
         a.note-author-image(href='#')
           img(src="assets/img/headshot.jpg")
