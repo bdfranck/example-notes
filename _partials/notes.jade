@@ -1,0 +1,39 @@
+.notes(data-bind="foreach: notes")
+  .note.animated.fadeInDown(data-bind="visible: !$data.isDeleted(), css: { 'expanded' : $data.isExpanded }")
+
+    .note-body
+      .note-text
+        div(data-bind="visible: !$data.isEditing()")
+          span(data-bind="visible: $data.hasPreview() && !$data.isExpanded(), html: $data.preview")
+          span(data-bind="visible: !$data.hasPreview() || $data.isExpanded, html: $data.body")
+          
+          span(data-bind="visible: $data.hasPreview() && !$data.isExpanded()")
+            | &nbsp;&nbsp;&nbsp;
+            a(href="#" data-bind="click: $root.expandNote") Read More
+          
+        textarea.new-note-input(data-bind="css: {'focusInput': $data.isEditing }, visible: $data.isEditing, value: $data.body" placeholder="Write Something Witty Here..")
+      != partial("attachments", {"source": "$data"})
+    
+    .note-footer
+      a.note-cancel(href='#' data-bind="visible: $data.isEditing, click: $root.editNote") Cancel
+      span.note-meta(data-bind="css: { 'hidden' : $data.isEditing }")
+        a.note-author-image(href='#')
+          img(src="assets/img/headshot.jpg")
+        span.note-footer-spacer
+        span.note-author(data-bind="text: $data.author")
+        span &nbsp;&mdash;&nbsp;
+        span.note-date(data-bind="text: $data.date") 25 Feb 2016
+      
+      button.update-btn.primary-btn(data-bind="visible: $data.isEditing, click: $root.editNote") Update Note
+      .text-right
+        a.note-action(href="#" data-bind="visible: !$data.isEditing(), click: $root.editNote")
+          i.zmdi.zmdi-edit
+          span &nbsp;
+          span Edit
+        span &nbsp;&nbsp;&nbsp;
+
+        a.note-action(href="#" data-bind="visible: !$data.isEditing(),click: $root.removeNote") 
+          i.zmdi.zmdi-delete
+          span &nbsp;
+          span Delete
+        .clearfix

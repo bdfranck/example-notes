@@ -1,0 +1,14 @@
+.new-note(data-bind="css: { 'expanded' : note.isExpanded }")
+  
+  .new-note-body(data-bind="click: expandNewNote")
+    .new-note-icon
+      i.zmdi.zmdi-edit
+    textarea.new-note-input(data-bind="css: { 'expanded' : note.isExpanded }, value: note.body" placeholder="Write a new note...")
+    != partial("attachments", {"source": "note"})
+    
+    .new-attachment(data-bind="visible: note.isExpanded, click: $root.addNewAttachment")
+      span Drag a file here or 
+      a(href="#") Select one from your computer
+  
+  .new-note-footer(data-bind="visible: note.isExpanded")
+    button.animated.fadeIn.primary-btn(data-bind="click: postNote") Post Note

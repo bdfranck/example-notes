@@ -1,0 +1,12 @@
+.alert(data-bind="visible: canUndo")
+  .pull-right
+    a(data-bind="click: hideAlert" href="#")
+      i.zmdi.zmdi-close
+  span You have deleted the note.
+  span &nbsp;&nbsp;&nbsp;
+  a(data-bind="click: undoNoteDelete" href="#") 
+    i.zmdi.zmdi-undo
+    span &nbsp;
+    span Undo Delete
+  
+    

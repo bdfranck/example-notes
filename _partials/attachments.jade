@@ -1,0 +1,8 @@
+.attachments(data-bind="foreach: #{source}.attachments")  
+  .attachment.animated.fadeIn
+    a.remove-attachment(href="#" data-bind=( source !== "note" ? "visible: $parent.isEditing, " : "") + ( source == "note" ? "click: $root.removeNewAttachment" : "click: $root.removeAttachment" ) )
+      i.zmdi.zmdi-close
+    a(data-bind="attr: { href: $data.href }" target="_blank")
+      i.zmdi.zmdi-file-text
+      br
+      span.attachment-name(data-bind="text: $data.name")
